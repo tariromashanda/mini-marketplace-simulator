@@ -2,7 +2,6 @@ package marketplace;
 
 public class Seller {
 
-
     private String name;
     private String surname;
     private String email;
@@ -15,6 +14,10 @@ public class Seller {
         this.email = email;
         this.business = business;
 
-
     }
+
+    public void setEmail(String newEmail){
+        this.email = newEmail;
+    }
+
 }
