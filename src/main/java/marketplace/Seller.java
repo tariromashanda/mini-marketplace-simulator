@@ -16,12 +16,20 @@ public class Seller {
 
     }
 
-    public void setEmail(String updateEmail){
-        this.email = updateEmail;
+    public void setName(String updateName){
+        this.email = updateName;
     }
 
     public void setSurname(String updateSurname){
         this.email = updateSurname;
+    }
+
+    public void setEmail(String updateEmail){
+        this.email = updateEmail;
+    }
+
+    public void setBusiness(String updateBusiness){
+        this.business = updateBusiness;
     }
 
 }
