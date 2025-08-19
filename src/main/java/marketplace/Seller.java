@@ -16,8 +16,12 @@ public class Seller {
 
     }
 
-    public void setEmail(String newEmail){
-        this.email = newEmail;
+    public void setEmail(String updateEmail){
+        this.email = updateEmail;
+    }
+
+    public void setSurname(String updateSurname){
+        this.email = updateSurname;
     }
 
 }
