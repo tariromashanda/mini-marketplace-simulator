@@ -17,11 +17,11 @@ public class Seller {
     }
 
     public void setName(String updateName){
-        this.email = updateName;
+        this.name = updateName;
     }
 
     public void setSurname(String updateSurname){
-        this.email = updateSurname;
+        this.surname = updateSurname;
     }
 
     public void setEmail(String updateEmail){
@@ -31,5 +31,24 @@ public class Seller {
     public void setBusiness(String updateBusiness){
         this.business = updateBusiness;
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getSurname(){
+        return this.surname;
+    }
+
+    public String getEmail(){
+        return this.email;
+    }
+
+    public String getBusiness(){
+        return this.business;
+    }
+
+
+
 
 }
