@@ -9,6 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Integer option;
+
         Scanner scanner = new Scanner(System.in);
 
         Welcome login = new Welcome();
@@ -21,7 +23,11 @@ public class Main {
 
 
         while(true){
-            Integer option = scanner.nextInt();
+            option = scanner.nextInt();
+
+
+
+
 
         }
 
