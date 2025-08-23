@@ -1,4 +1,5 @@
 package marketplace;
 
-public class Menu {
+public abstract class Menu {
+
 }

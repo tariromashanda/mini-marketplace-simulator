@@ -1,5 +1,7 @@
 package marketplace;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -13,9 +15,15 @@ public class Main {
 
         login.loginMenu();
 
-        Integer option = scanner.nextInt();
+        List<Menu> menuOrder = new ArrayList<>();
 
-        System.out.println(option);
+        menuOrder.add(login);
+
+
+        while(true){
+            Integer option = scanner.nextInt();
+
+        }
 
     }
 }

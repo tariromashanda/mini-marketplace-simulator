@@ -1,6 +1,6 @@
 package marketplace;
 
-public class Welcome {
+public class Welcome extends Menu {
 
     public void loginMenu(){
         System.out.println("1. Login");
