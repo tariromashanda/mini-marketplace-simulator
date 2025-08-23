@@ -6,13 +6,15 @@ public class User {
     private String surname;
     private String email;
     private String username;
+    private String password;
 
 
-    public User(String name, String surname, String email, String business){
+    public User(String name, String surname, String username, String email, String password){
         this.name = name;
         this.surname = surname;
+        this.username = username;
         this.email = email;
-        this.username = business;
+        this.password = password;
 
     }
 
@@ -28,9 +30,9 @@ public class User {
         this.email = updateEmail;
     }
 
-    public void setBusiness(String updateBusiness){
-        this.username = updateBusiness;
-    }
+    public void setUsername(String updateUsername){this.username = username;}
+
+    public void setPassword(String updatePassword){this.username = password;}
 
     public String getName(){
         return this.name;
@@ -44,9 +46,11 @@ public class User {
         return this.email;
     }
 
-    public String getBusiness(){
+    public String getUsername(){
         return this.username;
     }
+
+    public String getPassword(){ return this.password;}
 
 
 

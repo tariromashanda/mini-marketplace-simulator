@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Main {
 
-
     public static void main(String[] args) {
 
         String input;
@@ -20,30 +19,41 @@ public class Main {
 
         menuOrder.add(welcomeMenu);
 
+        welcomeMenu.WelcomeMenu();
+
 
         while(true){
 
-            welcomeMenu.WelcomeMenu();
             option = Integer.parseInt(scanner.nextLine());
 
             if(menuOrder.getFirst() == welcomeMenu && option == 1){
-                Register register = new Register();
 
                 System.out.println("Enter Name");
-                input = scanner.nextLine();
-                register.enterName(input);
+                String name = scanner.nextLine();
 
                 System.out.println("Enter Surname");
-                input = scanner.nextLine();
-                register.enterSurname(input);
+                String surname = scanner.nextLine();
 
                 System.out.println("Enter Username");
-                input = scanner.nextLine();
-                register.enterUsername(input);
+                String username = scanner.nextLine();
+
+                System.out.println("Enter Email");
+                String email = scanner.nextLine();
+
+                System.out.println("Enter Password");
+                String password = scanner.nextLine();
 
                 System.out.println("Select role 1.Buyer 2.Seller");
-                input = scanner.nextLine();
-                register.enterRole(Integer.valueOf(input));
+                String role = scanner.nextLine();
+
+                if (Integer.parseInt(role) == 1){
+                    Buyer newBuyer = new Buyer(name, surname, username, email,password);
+                }else{
+                    Seller newSeller = new Seller(name, surname, username, email, password);
+                }
+
+
+
 
             }
 
