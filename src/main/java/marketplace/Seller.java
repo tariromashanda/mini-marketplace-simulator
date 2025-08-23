@@ -1,7 +1,7 @@
 package marketplace;
 
 public class Seller extends User{
-    public Seller(String name, String surname, String email, String business) {
-        super(name, surname, email, business);
+    public Seller(String name, String surname, String email, String username){
+        super(name, surname, email, username);
     }
 }
