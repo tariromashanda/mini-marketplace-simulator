@@ -9,24 +9,27 @@ public class Main {
     public static void main(String[] args) {
 
         int option;
+        User loggedIn;
 
         Scanner scanner = new Scanner(System.in);
 
-        Welcome welcomeMenu = new Welcome();
+        HomeDashboard homeDashboardMenu = new HomeDashboard();
+        SellerDashboard sellerDashboard = new SellerDashboard();
+        BuyerDashboard buyerDashboard = new BuyerDashboard();
 
         List<Menu> menuOrder = new ArrayList<>();
         List<Seller> sellersList = new ArrayList<>();
         List<Buyer> buyerList = new ArrayList<>();
 
-        menuOrder.add(welcomeMenu);
+        menuOrder.add(homeDashboardMenu);
 
-        welcomeMenu.WelcomeMenu();
+        homeDashboardMenu.dashboard();
 
         while(true){
 
             option = Integer.parseInt(scanner.nextLine());
 
-            if(menuOrder.getFirst() == welcomeMenu && option == 2){
+            if(menuOrder.getFirst() == homeDashboardMenu && option == 2){
 
                 System.out.println("Enter Name");
                 String name = scanner.nextLine();
@@ -51,15 +54,35 @@ public class Main {
                     buyerList.add(newBuyer);
                     String message = String.format("You have successfully registered %s", username);
                     System.out.println(message);
+                    loggedIn = newBuyer;
 
                 }else{
                     Seller newSeller = new Seller(name, surname, username, email, password);
                     sellersList.add(newSeller);
                     String message = String.format("You have successfully registered %s", username);
                     System.out.println(message);
-                    System.out.println(newSeller);
+                    loggedIn = newSeller;
 
                 }
+
+                if(loggedIn instanceof Buyer){
+                    menuOrder.add(buyerDashboard);
+                    buyerDashboard.dashboard();
+
+                    System.out.println("1. View Items");
+                    System.out.println("2. Search Items");
+                    System.out.println("3. Purchase Items");
+                    System.out.println("4. View Transactions");
+                    System.out.println("5. Logout");
+
+                    String input = scanner.nextLine();
+
+                }else{
+                    menuOrder.add(sellerDashboard);
+                    sellerDashboard.dashboard();
+                }
+
+
 
 
 
