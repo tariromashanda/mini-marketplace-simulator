@@ -16,17 +16,18 @@ public class Main {
         Welcome welcomeMenu = new Welcome();
 
         List<Menu> menuOrder = new ArrayList<>();
+        List<Seller> sellersList = new ArrayList<>();
+        List<Buyer> buyerList = new ArrayList<>();
 
         menuOrder.add(welcomeMenu);
 
         welcomeMenu.WelcomeMenu();
 
-
         while(true){
 
             option = Integer.parseInt(scanner.nextLine());
 
-            if(menuOrder.getFirst() == welcomeMenu && option == 1){
+            if(menuOrder.getFirst() == welcomeMenu && option == 2){
 
                 System.out.println("Enter Name");
                 String name = scanner.nextLine();
@@ -48,8 +49,17 @@ public class Main {
 
                 if (Integer.parseInt(role) == 1){
                     Buyer newBuyer = new Buyer(name, surname, username, email,password);
+                    buyerList.add(newBuyer);
+                    String message = String.format("You have successfully registered %s", username);
+                    System.out.println(message);
+
                 }else{
                     Seller newSeller = new Seller(name, surname, username, email, password);
+                    sellersList.add(newSeller);
+                    String message = String.format("You have successfully registered %s", username);
+                    System.out.println(message);
+                    System.out.println(newSeller);
+
                 }
 
 
