@@ -1,5 +1,5 @@
 package marketplace;
-
+//save and load objects using file I/O
 public class SellerOptions {
     public String handleOption(Buyer buyer, int option){
         switch(option){
