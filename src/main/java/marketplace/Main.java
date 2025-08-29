@@ -71,7 +71,9 @@ public class Main {
                     sellerAttributes.add(newSeller.getEmail());
                     sellerAttributes.add(newSeller.getPassword());
 
-                    myFile.writeToFile(newSeller.getUsername(), sellerAttributes, S);
+                    myFile.createFile(sellerData);
+
+                    myFile.writeToFile(newSeller.getUsername(), sellerAttributes, sellerData);
 
 
 
