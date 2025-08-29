@@ -1,6 +1,7 @@
 package marketplace;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,10 +13,10 @@ public class Main {
         User loggedIn;
 
         Scanner scanner = new Scanner(System.in);
-
         HomeDashboard homeDashboardMenu = new HomeDashboard();
         SellerDashboard sellerDashboard = new SellerDashboard();
         BuyerDashboard buyerDashboard = new BuyerDashboard();
+        String sellerData = "sellerData.txt";
 
         List<Menu> menuOrder = new ArrayList<>();
         List<Seller> sellersList = new ArrayList<>();
@@ -56,12 +57,23 @@ public class Main {
                     System.out.println(message);
                     loggedIn = newBuyer;
 
+
                 }else{
                     Seller newSeller = new Seller(name, surname, username, email, password);
                     sellersList.add(newSeller);
                     String message = String.format("You have successfully registered %s", username);
                     System.out.println(message);
                     loggedIn = newSeller;
+                    HashMap<String, List<String>> sellers = new HashMap<>();
+                    List<String> sellerAttributes = new ArrayList<>();
+                    sellerAttributes.add(newSeller.getName());
+                    sellerAttributes.add(newSeller.getSurname());
+                    sellerAttributes.add(newSeller.getEmail());
+                    sellerAttributes.add(newSeller.getPassword());
+
+                    myFile.writeToFile(newSeller.getUsername(), sellerAttributes, S);
+
+
 
                 }
 
