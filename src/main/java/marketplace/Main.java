@@ -10,17 +10,15 @@ public class Main {
 
         int option;
         User loggedIn = null;
-        Menu currentDashboard;
+        Dashboard currentDashboard;
 
         Scanner scanner = new Scanner(System.in);
         HomeDashboard homeDashboard = new HomeDashboard();
         SellerDashboard sellerDashboard = new SellerDashboard();
-        Inventory inventory = new Inventory();
-        String sellerInventory = "sellerInventory.txt";
 
-        List<Menu> menuOrder = new ArrayList<>();
+        List<Dashboard> dashboardOrder = new ArrayList<>();
 
-        menuOrder.add(homeDashboard);
+        dashboardOrder.add(homeDashboard);
 
         homeDashboard.dashboard();
 
@@ -28,22 +26,29 @@ public class Main {
 
             option = Integer.parseInt(scanner.nextLine());
 
-            if(menuOrder.getFirst() == homeDashboard){
+            if(dashboardOrder.getLast() == homeDashboard){
 
-               currentDashboard = homeDashboard.handleOption(option);
-               menuOrder.add(currentDashboard);
-               loggedIn = homeDashboard.loggedInUser();
+               currentDashboard = dashboardOrder.getLast();
+
+               //loggedIn = currentDashboard.ge
+               dashboardOrder.add(currentDashboard);
 
                 }
 
             option = Integer.parseInt(scanner.nextLine());
 
-            if(menuOrder.getFirst() == sellerDashboard){
+            if(dashboardOrder.getFirst() == sellerDashboard){
                 sellerDashboard.dashboard();
 
                 currentDashboard = sellerDashboard.handleOption((Seller) loggedIn,option);
+                dashboardOrder.add(currentDashboard);
+                loggedIn = homeDashboard.loggedInUser();
             }
 
+            if(option == 5) {
+                sellerDashboard.addToFile();
+                break;
+            }
 
 
             }

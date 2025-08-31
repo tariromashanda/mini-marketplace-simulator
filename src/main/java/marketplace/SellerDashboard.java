@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SellerDashboard extends Menu {
-    Menu dashboard;
+public class SellerDashboard extends Dashboard {
+    Dashboard dashboard;
     User loggedIn;
     String sellerInventory = "sellerInventory.txt";
 
@@ -20,10 +20,10 @@ public class SellerDashboard extends Menu {
         System.out.println("5. Logout");
     }
 
-    public Menu handleOption(Seller seller, int option){
+    public Dashboard handleOption(Seller seller, int option){
         switch(option){
             case 1:
-                addItems(seller);
+                addItems();
             case 2:
                 inventory.dashboard();
                 System.out.println("select an option");
@@ -45,7 +45,7 @@ public class SellerDashboard extends Menu {
         return dashboard;
     }
 
-    private void addItems(Seller seller){
+public void addItems(){
 
             System.out.println("enter item name");
             String itemName = scanner.nextLine();
@@ -61,7 +61,7 @@ public class SellerDashboard extends Menu {
 
 }
 
-private void addToFile(){
+public void addToFile(){
 
     List<List <String>> sellerInventoryList = new ArrayList<>();
     for(Item items: inventory.getInventory()){
@@ -71,13 +71,15 @@ private void addToFile(){
         itemAttributes.add(items.getDescription());
         sellerInventoryList.add(itemAttributes);
 
-
     }
-
 
     myFile.writeToInventory(loggedIn.getUsername(), sellerInventoryList, sellerInventory);
 
 }
+
+public User loggedInUser(){
+        return loggedIn;
+    }
 
 
 

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 
-public class HomeDashboard extends Menu {
+public class HomeDashboard extends Dashboard {
 
-    Menu dashboard;
+    Dashboard dashboard;
     User loggedIn;
     String sellerData = "sellerData.txt";
     String buyerData = "buyerData.txt";
@@ -18,30 +18,30 @@ public class HomeDashboard extends Menu {
     List<Buyer> buyerList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
+    public HomeDashboard(Dashboard dashboard) {
+        super(dashboard);
+    }
+
     public void dashboard(){
         System.out.println("1. login");
         System.out.println("2. sign up");
         System.out.println("3. exit");
     }
 
-    public Menu handleOption(int option){
+    public void handleOption(int option){
         switch(option){
             case 1:
-                signup();
-            case 2:
                 login();
+            case 2:
+                signup();
             case 3:
                 exit();
             default:
                 System.out.println("Please select an option from 1 to 3");
         }
 
-        return dashboard;
     }
 
-    public User loggedInUser(){
-        return loggedIn;
-    }
 
     public void signup(){
 
@@ -117,10 +117,9 @@ public class HomeDashboard extends Menu {
 
     }
 
-    public void exit(){
 
-    }
+public void exit(){
 
-
+}
 
 }
