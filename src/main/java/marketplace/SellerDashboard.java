@@ -20,7 +20,7 @@ public class SellerDashboard extends Dashboard {
         System.out.println("5. Logout");
     }
 
-    public Dashboard handleOption(Seller seller, int option){
+    public void handleOption(int option){
         switch(option){
             case 1:
                 addItems();
@@ -42,7 +42,6 @@ public class SellerDashboard extends Dashboard {
             default:
                 System.out.println("Please select an option from 1 to 5");
         }
-        return dashboard;
     }
 
 public void addItems(){

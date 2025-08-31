@@ -10,28 +10,25 @@ public class Main {
 
         int option;
         User loggedIn = null;
-        Dashboard currentDashboard;
 
         Scanner scanner = new Scanner(System.in);
         HomeDashboard homeDashboard = new HomeDashboard();
         SellerDashboard sellerDashboard = new SellerDashboard();
-
+        Dashboard prevDashboard;
+        Dashboard nextDashboard;
         List<Dashboard> dashboardOrder = new ArrayList<>();
 
         dashboardOrder.add(homeDashboard);
-
-        homeDashboard.dashboard();
+        Dashboard currentDashboard = dashboardOrder.getLast();
 
         while(true){
 
             option = Integer.parseInt(scanner.nextLine());
 
             if(dashboardOrder.getLast() == homeDashboard){
-
-               currentDashboard = dashboardOrder.getLast();
-
-               //loggedIn = currentDashboard.ge
-               dashboardOrder.add(currentDashboard);
+                currentDashboard.dashboard();
+                currentDashboard.handleOption(option);
+                currentDashboard = currentDashboard.getDashboard();
 
                 }
 
@@ -39,10 +36,9 @@ public class Main {
 
             if(dashboardOrder.getFirst() == sellerDashboard){
                 sellerDashboard.dashboard();
-
-                currentDashboard = sellerDashboard.handleOption((Seller) loggedIn,option);
-                dashboardOrder.add(currentDashboard);
-                loggedIn = homeDashboard.loggedInUser();
+                currentDashboard.dashboard();
+                currentDashboard.handleOption(option);
+                currentDashboard = currentDashboard.getDashboard();
             }
 
             if(option == 5) {

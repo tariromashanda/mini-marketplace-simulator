@@ -1,6 +1,7 @@
 package marketplace;
 
 public class BuyerDashboard extends Dashboard {
+
     public void dashboard(){
         System.out.println("1. view items");
         System.out.println("2. search items");

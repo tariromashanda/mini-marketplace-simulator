@@ -18,9 +18,6 @@ public class HomeDashboard extends Dashboard {
     List<Buyer> buyerList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public HomeDashboard(Dashboard dashboard) {
-        super(dashboard);
-    }
 
     public void dashboard(){
         System.out.println("1. login");
