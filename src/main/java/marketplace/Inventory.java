@@ -1,5 +1,6 @@
 package marketplace;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
@@ -17,7 +18,30 @@ public class Inventory {
         sellerItems.add(item);
     }
 
-    public void delete( Item item){
-        sellerItems.add(item);
+    public void delete(Item item){
+        sellerItems.remove(item);
     }
+
+    public void view(){
+        for (Item sellerItem : sellerItems) {
+            System.out.println(sellerItem.toString());
+        }
+    }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (o == this) {
+//            return true;
+//        }
+//
+//        if (!(o instanceof Item)) {
+//            return false;
+//        }
+//
+//       Item item = (Item) o;
+//
+//        boolean currencyCodeEquals = (this.currencyCode == null && other.currencyCode == null)
+//                || (this.currencyCode != null && this.currencyCode.equals(other.currencyCode));
+//        return this.amount == other.amount && currencyCodeEquals;
+//    }
 }
