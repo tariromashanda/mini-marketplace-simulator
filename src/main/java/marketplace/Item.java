@@ -3,31 +3,54 @@ package marketplace;
 public class Item {
     private String name;
     private String price;
-    private String category;
     private String description;
 
-
-    public Item(String name, String price, String category, String description){
+    public Item(String name, String price, String description){
         this.name = name;
         this.price = price;
-        this.category = category;
         this.description = description;
     }
 
-    public void  editName(String new_name){
+    public void editName(String new_name){
         this.name = new_name;
     }
 
-    public void  editPrice(String new_price){
-        this.name = new_price;
+    public void editPrice(String new_price){
+        this.price = new_price;
     }
 
-    public void  editCategory(String new_category){
-        this.name = new_category;
+    public void editDescription(String new_description){
+        this.description = new_description;
     }
 
-    public void  editDescription(String new_description){
-        this.name = new_description;
+    public String getName(){
+        return this.name;
     }
+
+    public String getPrice(){
+        return this.price;
+    }
+
+
+    public String getDescription(){
+        return this.description;
+    }
+
+//    @Override
+//    public boolean equals(Object object) {
+//        if (object == this) {
+//            return true;
+//        }
+//
+//        if (!(object instanceof Item)) {
+//            return false;
+//        }
+//
+//       Item item = (Item) object;
+//
+//        boolean ItemEquals = (this.price == null && other.currencyCode == null)
+//                || (this.currencyCode != null && this.currencyCode.equals(other.currencyCode));
+//        return this.amount == other.amount && currencyCodeEquals;
+//    }
 
 }

@@ -19,6 +19,17 @@ public class myFile {
         }
     }
 
+    public static void writeToInventory(String key, List<List <String>> value, String file){
+
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))){
+            writer.write(key + " " + value);
+            writer.newLine();
+            writer.flush();
+        } catch (IOException e) {
+            System.err.println("Error writing to file " + e.getMessage());
+        }
+    }
+
     public static void createFile(String filePath){
 
         try {
