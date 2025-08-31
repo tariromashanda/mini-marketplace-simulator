@@ -45,8 +45,6 @@ public class myFile {
                     String attributes = parts[1].trim();
                     map.put(username, Collections.singletonList(attributes));
 
-
-
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

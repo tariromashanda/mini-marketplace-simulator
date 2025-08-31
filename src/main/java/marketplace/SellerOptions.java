@@ -1,7 +1,7 @@
 package marketplace;
 //save and load objects using file I/O
 public class SellerOptions {
-    public String handleOption(Buyer buyer, int option){
+    public String handleOption(Seller seller, int option){
         switch(option){
             case 1:
                 return "1. Add Item";
@@ -14,7 +14,7 @@ public class SellerOptions {
             case 5:
                 return "5. Logout";
             default:
-                return null;
+                return "Please select an option from 1 to 5";
         }
     }
 }

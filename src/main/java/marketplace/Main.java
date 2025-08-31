@@ -75,19 +75,11 @@ public class Main {
 
                     myFile.writeToFile(newSeller.getUsername(), sellerAttributes, sellerData);
 
-
-
                 }
 
                 if(loggedIn instanceof Buyer){
                     menuOrder.add(buyerDashboard);
                     buyerDashboard.dashboard();
-
-                    System.out.println("1. View Items");
-                    System.out.println("2. Search Items");
-                    System.out.println("3. Purchase Items");
-                    System.out.println("4. View Transactions");
-                    System.out.println("5. Logout");
 
                     String input = scanner.nextLine();
 
