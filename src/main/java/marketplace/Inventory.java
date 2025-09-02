@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    List<Item> sellerItems = new ArrayList<>();
+    List<Item> inventory = new ArrayList<>();
 
     public void add(Item item){
-        sellerItems.add(item);
+        inventory.add(item);
     }
 
     public void dashboard(){
@@ -18,15 +18,18 @@ public class Inventory {
     }
 
     public void edit(String item, String option, String edit){
-        for(Item sellerItem: sellerItems){
-            if (sellerItem.equals(item)){
-                switch(Integer.valueOf(option)){
+        for(Item sellerItem: inventory){
+            if (sellerItem.getName().equals(item)){
+                switch(Integer.parseInt(option)){
                     case 1:
                         sellerItem.editName(edit);
+                        break;
                     case 2:
                         sellerItem.editPrice(edit);
+                        break;
                     case 3:
                         sellerItem.editDescription(edit);
+                        break;
                     default:
                         System.out.println("please select an option from 1 to 3");
                 }
@@ -36,16 +39,12 @@ public class Inventory {
     }
 
     public void delete(String item){
+        inventory.remove(item);
 
-        for(Item findItem: sellerItems ){
-            if(findItem.getName().toString().equals(item)){
-                sellerItems.remove(findItem);
-            }
-        }
     }
 
     public void view(){
-        for (Item item : sellerItems) {
+        for (Item item : inventory) {
             System.out.println(item.getName());
             System.out.println(item.getPrice());
             System.out.println(item.getDescription());
@@ -54,7 +53,7 @@ public class Inventory {
     }
 
     public List<Item> getInventory(){
-        return sellerItems;
+        return inventory;
     }
 
 }

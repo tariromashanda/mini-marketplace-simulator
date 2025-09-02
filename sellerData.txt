@@ -1,3 +1,6 @@
 mstar5 [mary, star, mary@gmail.com, ndfg5]
 tacocat [spencer, aung, spen233@gmail.com, ghtf4]
 jeffbezos@gmail.com [jeff, bezos, jeffbezos@gmail.com, jeff1234]
+creamy1 [bob, cream, bob@gmail.com, 1234]
+key [key, peele, key@gmail.com, 1234]
+green101 [jason, green, greenjason@gmail.com, 2greenmaba]

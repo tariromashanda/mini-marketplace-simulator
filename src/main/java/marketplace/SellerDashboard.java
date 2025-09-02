@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SellerDashboard extends Dashboard {
-    User loggedIn;
+    Seller loggedIn;
     String sellerInventory = "sellerInventory.txt";
 
     Inventory inventory = new Inventory();
@@ -16,6 +16,7 @@ public class SellerDashboard extends Dashboard {
         switch(option){
             case 1:
                 addItems();
+                break;
             case 2:
                 inventory.dashboard();
                 System.out.println("select an option");
@@ -24,13 +25,16 @@ public class SellerDashboard extends Dashboard {
                 String editItem = scanner.nextLine();
                 System.out.println("what do you want to change the value to?");
                 String editChange = scanner.nextLine();
-                inventory.edit(editOption, editItem, editChange);
+                loggedIn.getInventory().edit(editOption, editItem, editChange);
+                break;
             case 3:
                 System.out.println("what item do you want to delete");
                 String item = scanner.nextLine();
-                inventory.delete(item);
+                loggedIn.getInventory().delete(item);
+                break;
             case 4:
-                inventory.view();
+                loggedIn.getInventory().view();
+                break;
             default:
                 System.out.println("please select an option from 1 to 5");
         }
@@ -55,7 +59,7 @@ public void addItems(){
             String itemDescription = scanner.nextLine();
 
             Item newItem = new Item(itemName, itemPrice, itemDescription);
-            inventory.add(newItem);
+            loggedIn.getInventory().add(newItem);
 
 }
 
@@ -75,7 +79,7 @@ public void addToFile(){
 
 }
 
-public User loggedInUser(){
+public User getloggedInUser(){
         return loggedIn;
     }
 

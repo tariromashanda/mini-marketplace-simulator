@@ -19,10 +19,13 @@ public class HomeDashboard extends Dashboard {
         switch(option){
             case 1:
                 login();
+                break;
             case 2:
                 signup();
+                break;
             case 3:
                 exit();
+                break;
             default:
                 System.out.println("please select an option from 1 to 3");
         }
