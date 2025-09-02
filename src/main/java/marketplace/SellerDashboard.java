@@ -5,20 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SellerDashboard extends Dashboard {
-    Dashboard dashboard;
     User loggedIn;
     String sellerInventory = "sellerInventory.txt";
 
     Inventory inventory = new Inventory();
     Scanner scanner = new Scanner(System.in);
 
-    public void dashboard(){
-        System.out.println("1. Add Item");
-        System.out.println("2. Edit Item");
-        System.out.println("3. Delete Item");
-        System.out.println("4. View My Listings");
-        System.out.println("5. Logout");
-    }
 
     public void handleOption(int option){
         switch(option){
@@ -42,6 +34,13 @@ public class SellerDashboard extends Dashboard {
             default:
                 System.out.println("Please select an option from 1 to 5");
         }
+    }
+
+    public void dashboard(){
+        System.out.println("1. add item");
+        System.out.println("2. edit item");
+        System.out.println("3. delete item");
+        System.out.println("4. view items");
     }
 
 public void addItems(){
@@ -80,7 +79,10 @@ public User loggedInUser(){
         return loggedIn;
     }
 
-
+    @Override
+    public String toString(){
+        return "Seller Dashboard";
+    }
 
 
 }

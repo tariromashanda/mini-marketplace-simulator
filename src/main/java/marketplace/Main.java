@@ -14,32 +14,21 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         HomeDashboard homeDashboard = new HomeDashboard();
         SellerDashboard sellerDashboard = new SellerDashboard();
-        Dashboard prevDashboard;
-        Dashboard nextDashboard;
         List<Dashboard> dashboardOrder = new ArrayList<>();
 
+        Dashboard.setDashboard(homeDashboard);
+
         dashboardOrder.add(homeDashboard);
+
         Dashboard currentDashboard = dashboardOrder.getLast();
+        System.out.println(currentDashboard);
 
         while(true){
 
+            currentDashboard.dashboard();
             option = Integer.parseInt(scanner.nextLine());
+            Dashboard.getDashboard().handleOption(option);
 
-            if(dashboardOrder.getLast() == homeDashboard){
-                currentDashboard.dashboard();
-                currentDashboard.handleOption(option);
-                currentDashboard = currentDashboard.getDashboard();
-
-                }
-
-            option = Integer.parseInt(scanner.nextLine());
-
-            if(dashboardOrder.getFirst() == sellerDashboard){
-                sellerDashboard.dashboard();
-                currentDashboard.dashboard();
-                currentDashboard.handleOption(option);
-                currentDashboard = currentDashboard.getDashboard();
-            }
 
             if(option == 5) {
                 sellerDashboard.addToFile();

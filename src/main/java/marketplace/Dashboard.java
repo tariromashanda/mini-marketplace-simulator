@@ -1,11 +1,15 @@
 package marketplace;
 
 public abstract class Dashboard {
-    private Dashboard dashboard;
+    private static Dashboard currentDashboard;
     private User loggedIn;
 
-    public Dashboard getDashboard() {
-        return this.dashboard;
+    public static void setDashboard(Dashboard dashboard){
+        currentDashboard = dashboard;
+    }
+
+    public static Dashboard getDashboard() {
+        return currentDashboard;
     }
 
     public User getLoggedInUser(){
@@ -16,11 +20,11 @@ public abstract class Dashboard {
         this.loggedIn = user;
     }
 
-    public void dashboard(){
-
-    }
-
     public void handleOption(int option){
 
     }
+
+    public void dashboard() {
+    }
+
 }
