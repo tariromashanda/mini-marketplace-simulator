@@ -38,10 +38,16 @@ public class Inventory {
         }
     }
 
-    public void delete(String item){
-        inventory.remove(item);
-
+    public void delete(String itemName) {
+        for (int i = 0; i < inventory.size(); i++) {
+            Item current = inventory.get(i);
+            if (current.getName().equals(itemName)) {
+                inventory.remove(i);
+                break;
+            }
+        }
     }
+
 
     public List<Item> getInventory() {
         return inventory;

@@ -36,19 +36,11 @@ public class Main {
                 dashboardOrder.add(buyerDashboard);
             }
 
-
             if(option == 5) {
                 ((Seller)currentDashboard.getLoggedInUser()).addToFile();
                 break;
             }
-
-
-            }
-
-
-
-
-
         }
 
+        }
     }
