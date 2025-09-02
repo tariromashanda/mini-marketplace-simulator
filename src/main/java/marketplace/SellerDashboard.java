@@ -26,13 +26,13 @@ public class SellerDashboard extends Dashboard {
                 String editChange = scanner.nextLine();
                 inventory.edit(editOption, editItem, editChange);
             case 3:
-                System.out.println("What Item do you want to delete");
+                System.out.println("what item do you want to delete");
                 String item = scanner.nextLine();
                 inventory.delete(item);
             case 4:
                 inventory.view();
             default:
-                System.out.println("Please select an option from 1 to 5");
+                System.out.println("please select an option from 1 to 5");
         }
     }
 

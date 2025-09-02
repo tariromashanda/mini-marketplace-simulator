@@ -15,7 +15,7 @@ public class myFile {
             writer.newLine();
             writer.flush();
         } catch (IOException e) {
-            System.err.println("Error writing to file " + e.getMessage());
+            System.err.println("error writing to file " + e.getMessage());
         }
     }
 
@@ -26,7 +26,7 @@ public class myFile {
             writer.newLine();
             writer.flush();
         } catch (IOException e) {
-            System.err.println("Error writing to file " + e.getMessage());
+            System.err.println("error writing to file " + e.getMessage());
         }
     }
 
@@ -36,10 +36,10 @@ public class myFile {
             File file = new File(filePath);
 
             if(file.createNewFile()){
-                System.out.println("File created");
+                System.out.printf(" %s file created%n", filePath);
             } else{
-                System.out.println("File already exists");
-            };
+                System.out.printf(" %s already exists%n", filePath);
+            }
 
         } catch (Exception e) {
             throw new RuntimeException(e);

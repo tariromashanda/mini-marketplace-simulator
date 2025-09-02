@@ -36,21 +36,4 @@ public class Item {
         return this.description;
     }
 
-//    @Override
-//    public boolean equals(Object object) {
-//        if (object == this) {
-//            return true;
-//        }
-//
-//        if (!(object instanceof Item)) {
-//            return false;
-//        }
-//
-//       Item item = (Item) object;
-//
-//        boolean ItemEquals = (this.price == null && other.currencyCode == null)
-//                || (this.currencyCode != null && this.currencyCode.equals(other.currencyCode));
-//        return this.amount == other.amount && currencyCodeEquals;
-//    }
-
 }

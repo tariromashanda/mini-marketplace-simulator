@@ -35,7 +35,6 @@ public class HomeDashboard extends Dashboard {
         System.out.println("3. exit");
     }
 
-
     public void signup(){
 
             System.out.println("enter name");
@@ -74,8 +73,6 @@ public class HomeDashboard extends Dashboard {
 
                 loggedIn = newBuyer;
 
-
-
             }else{
                 Seller newSeller = new Seller(name, surname, username, email, password);
                 sellersList.add(newSeller);
@@ -99,8 +96,11 @@ public class HomeDashboard extends Dashboard {
 
                 loggedIn = newSeller;
 
-
             }
+    }
+
+    public User getLoggedInUser(){
+        return this.loggedIn;
     }
 
 

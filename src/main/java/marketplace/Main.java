@@ -9,25 +9,32 @@ public class Main {
     public static void main(String[] args) {
 
         int option;
-        User loggedIn = null;
-
+        Dashboard currentDashboard;
         Scanner scanner = new Scanner(System.in);
         HomeDashboard homeDashboard = new HomeDashboard();
         SellerDashboard sellerDashboard = new SellerDashboard();
+        BuyerDashboard buyerDashboard = new BuyerDashboard();
         List<Dashboard> dashboardOrder = new ArrayList<>();
 
         Dashboard.setDashboard(homeDashboard);
 
         dashboardOrder.add(homeDashboard);
 
-        Dashboard currentDashboard = dashboardOrder.getLast();
-        System.out.println(currentDashboard);
-
         while(true){
 
+            currentDashboard = dashboardOrder.getLast();
             currentDashboard.dashboard();
             option = Integer.parseInt(scanner.nextLine());
             Dashboard.getDashboard().handleOption(option);
+
+            if(currentDashboard.getLoggedInUser() instanceof Seller && currentDashboard instanceof HomeDashboard){
+                Dashboard.setDashboard(sellerDashboard);
+                dashboardOrder.add(sellerDashboard);
+
+            }else if(currentDashboard.getLoggedInUser() instanceof Buyer && currentDashboard instanceof HomeDashboard){
+                Dashboard.setDashboard(buyerDashboard);
+                dashboardOrder.add(buyerDashboard);
+            }
 
 
             if(option == 5) {
