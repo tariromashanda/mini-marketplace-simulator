@@ -10,31 +10,26 @@ public class Inventory {
         inventory.add(item);
     }
 
-    public void dashboard(){
-        System.out.println("1. change name");
-        System.out.println("2. change price");
-        System.out.println("3. change description");
+    public void edit(String itemName, String option, String newValue) {
+        boolean edited = false;
+        String target = itemName.trim();
 
-    }
-
-    public void edit(String item, String option, String edit){
-        for(Item sellerItem: inventory){
-            if (sellerItem.getName().equals(item)){
-                switch(Integer.parseInt(option)){
-                    case 1:
-                        sellerItem.editName(edit);
-                        break;
-                    case 2:
-                        sellerItem.editPrice(edit);
-                        break;
-                    case 3:
-                        sellerItem.editDescription(edit);
-                        break;
+        for (Item sellerItem : inventory) {
+            if (sellerItem.getName().trim().equalsIgnoreCase(target)) {
+                switch (Integer.parseInt(option)) {
+                    case 1: sellerItem.editName(newValue); break;
+                    case 2: sellerItem.editPrice(newValue); break;
+                    case 3: sellerItem.editDescription(newValue); break;
                     default:
                         System.out.println("please select an option from 1 to 3");
+                        return;
                 }
-
+                edited = true;
+                break; // only edit the first matching item
             }
+        }
+        if (!edited) {
+            System.out.println("Item not found: " + itemName);
         }
     }
 

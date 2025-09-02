@@ -1,13 +1,9 @@
 package marketplace;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class SellerDashboard extends Dashboard {
     Seller loggedIn;
-
-    Inventory inventory = new Inventory();
     Scanner scanner = new Scanner(System.in);
 
     public SellerDashboard(Seller seller) {
@@ -20,14 +16,17 @@ public class SellerDashboard extends Dashboard {
                 addItems();
                 break;
             case 2:
-                inventory.dashboard();
-                System.out.println("select an option");
-                String editOption = scanner.nextLine();
+
                 System.out.println("what item do you want to change?");
-                String editItem = scanner.nextLine();
-                System.out.println("what do you want to change the value to?");
-                String editChange = scanner.nextLine();
-                loggedIn.getInventory().edit(editOption, editItem, editChange);
+                String itemName = scanner.nextLine().trim();
+
+                System.out.println("select an option (1-name, 2-price, 3-description)");
+                String editOption = scanner.nextLine().trim();
+
+                System.out.println("what item do you want to change?");
+                String editItem = scanner.nextLine().trim();
+
+                loggedIn.getInventory().edit(itemName, editOption, editItem);
                 break;
             case 3:
                 System.out.println("what item do you want to delete");
@@ -49,7 +48,7 @@ public class SellerDashboard extends Dashboard {
         System.out.println("4. view items");
     }
 
-public void addItems(){
+     public void addItems(){
 
             System.out.println("enter item name");
             String itemName = scanner.nextLine();
@@ -64,10 +63,6 @@ public void addItems(){
             loggedIn.getInventory().add(newItem);
 
 }
-
-public User getloggedInUser(){
-        return loggedIn;
-    }
 
     @Override
     public String toString(){

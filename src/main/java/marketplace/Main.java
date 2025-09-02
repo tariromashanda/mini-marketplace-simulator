@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 public class Main {
 
     public static void main(String[] args) {
 
         int option;
+        User logedIn = null;
         Dashboard currentDashboard;
         Scanner scanner = new Scanner(System.in);
         HomeDashboard homeDashboard = new HomeDashboard();
@@ -36,9 +39,8 @@ public class Main {
                 dashboardOrder.add(buyerDashboard);
             }
 
-            if(option == 5) {
-                ((Seller)currentDashboard.getLoggedInUser()).addToFile();
-                break;
+            if(option == 5){
+                System.exit(0);
             }
         }
 
