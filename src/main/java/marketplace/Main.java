@@ -12,7 +12,6 @@ public class Main {
         Dashboard currentDashboard;
         Scanner scanner = new Scanner(System.in);
         HomeDashboard homeDashboard = new HomeDashboard();
-        SellerDashboard sellerDashboard = new SellerDashboard();
         BuyerDashboard buyerDashboard = new BuyerDashboard();
         List<Dashboard> dashboardOrder = new ArrayList<>();
 
@@ -28,6 +27,7 @@ public class Main {
             Dashboard.getDashboard().handleOption(option);
 
             if(currentDashboard.getLoggedInUser() instanceof Seller && currentDashboard instanceof HomeDashboard){
+                SellerDashboard sellerDashboard = new SellerDashboard((Seller) currentDashboard.getLoggedInUser());
                 Dashboard.setDashboard(sellerDashboard);
                 dashboardOrder.add(sellerDashboard);
 
@@ -38,7 +38,7 @@ public class Main {
 
 
             if(option == 5) {
-                sellerDashboard.addToFile();
+                ((Seller)currentDashboard.getLoggedInUser()).addToFile();
                 break;
             }
 

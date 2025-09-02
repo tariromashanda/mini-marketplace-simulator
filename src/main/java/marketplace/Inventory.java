@@ -43,6 +43,11 @@ public class Inventory {
 
     }
 
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+
     public void view(){
         for (Item item : inventory) {
             System.out.println(item.getName());
@@ -52,8 +57,5 @@ public class Inventory {
         }
     }
 
-    public List<Item> getInventory(){
-        return inventory;
-    }
 
 }

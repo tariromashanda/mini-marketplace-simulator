@@ -1,10 +1,7 @@
 package marketplace;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class myFile {
     //writing seller to the file
@@ -65,4 +62,5 @@ public class myFile {
 
         return map;
     }
+
 }

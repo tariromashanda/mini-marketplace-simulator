@@ -1,5 +1,8 @@
 package marketplace;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Seller extends User{
     private Inventory inventory = new Inventory();
 
@@ -13,5 +16,23 @@ public class Seller extends User{
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public void addToFile(){
+
+        String sellerInventory = "sellerInventory";
+
+        List<List<String>> sellerInventoryList = new ArrayList<>();
+        for(Item item: inventory.getInventory()){
+            List<String> itemAttributes = new ArrayList<>();
+            itemAttributes.add(item.getName());
+            itemAttributes.add(item.getPrice());
+            itemAttributes.add(item.getDescription());
+            sellerInventoryList.add(itemAttributes);
+
+        }
+
+        myFile.writeToInventory(getUsername(), sellerInventoryList, sellerInventory);
+
     }
 }

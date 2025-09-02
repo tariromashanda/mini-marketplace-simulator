@@ -61,6 +61,8 @@ public class HomeDashboard extends Dashboard {
             if (Integer.parseInt(role) == 1){
                 Buyer newBuyer = new Buyer(name, surname, username, email,password);
                 buyerList.add(newBuyer);
+                loggedIn = newBuyer;
+
                 String message = String.format("you have successfully registered %s", username);
                 System.out.println(message);
 
@@ -74,11 +76,15 @@ public class HomeDashboard extends Dashboard {
 
                 myFile.writeToFile(newBuyer.getUsername(), buyerAttributes, buyerData);
 
-                loggedIn = newBuyer;
 
             }else{
                 Seller newSeller = new Seller(name, surname, username, email, password);
                 sellersList.add(newSeller);
+                loggedIn = newSeller;
+
+                SellerDashboard sellerDashboard = new SellerDashboard(newSeller);
+                sellerDashboard.dashboard();
+
                 String message = String.format("You have successfully registered %s", username);
                 System.out.println(message);
 
@@ -97,7 +103,6 @@ public class HomeDashboard extends Dashboard {
 
                 myFile.writeToFile(newSeller.getUsername(), sellerItems,sellerInventory);
 
-                loggedIn = newSeller;
 
             }
     }

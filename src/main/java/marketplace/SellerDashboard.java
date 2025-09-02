@@ -6,11 +6,13 @@ import java.util.Scanner;
 
 public class SellerDashboard extends Dashboard {
     Seller loggedIn;
-    String sellerInventory = "sellerInventory.txt";
 
     Inventory inventory = new Inventory();
     Scanner scanner = new Scanner(System.in);
 
+    public SellerDashboard(Seller seller) {
+        this.loggedIn = seller;
+    }
 
     public void handleOption(int option){
         switch(option){
@@ -60,22 +62,6 @@ public void addItems(){
 
             Item newItem = new Item(itemName, itemPrice, itemDescription);
             loggedIn.getInventory().add(newItem);
-
-}
-
-public void addToFile(){
-
-    List<List <String>> sellerInventoryList = new ArrayList<>();
-    for(Item items: inventory.getInventory()){
-        List<String> itemAttributes = new ArrayList<>();
-        itemAttributes.add(items.getName());
-        itemAttributes.add(items.getPrice());
-        itemAttributes.add(items.getDescription());
-        sellerInventoryList.add(itemAttributes);
-
-    }
-
-    myFile.writeToInventory(loggedIn.getUsername(), sellerInventoryList, sellerInventory);
 
 }
 
