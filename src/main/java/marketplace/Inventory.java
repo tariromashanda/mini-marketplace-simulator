@@ -1,5 +1,6 @@
 package marketplace;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,26 +11,37 @@ public class Inventory {
         inventory.add(item);
     }
 
-    public void edit(String itemName, String option, String newValue) {
+    public void edit(String itemName, String option, String newValue) throws IOException {
         boolean edited = false;
         String target = itemName.trim();
+        String oldValue;
 
         for (Item sellerItem : inventory) {
             if (sellerItem.getName().trim().equalsIgnoreCase(target)) {
                 switch (Integer.parseInt(option)) {
-                    case 1: sellerItem.editName(newValue); break;
-                    case 2: sellerItem.editPrice(newValue); break;
-                    case 3: sellerItem.editDescription(newValue); break;
+                    case 1:
+                        oldValue = sellerItem.getName();
+                        sellerItem.editName(newValue);
+                        break;
+                    case 2:
+                        oldValue = sellerItem.getPrice();
+                        sellerItem.editPrice(newValue);
+                        break;
+                    case 3:
+                        oldValue = sellerItem.getDescription();
+                        sellerItem.editDescription(newValue);
+                        break;
                     default:
                         System.out.println("please select an option from 1 to 3");
                         return;
                 }
                 edited = true;
-                break; // only edit the first matching item
+                myFile.updateFile("sellerInventory.txt", oldValue, newValue);
+                break;
             }
         }
         if (!edited) {
-            System.out.println("Item not found: " + itemName);
+            System.out.println("item not found: " + itemName);
         }
     }
 
@@ -57,6 +69,8 @@ public class Inventory {
             System.out.println();
         }
     }
+
+
 
 
 }

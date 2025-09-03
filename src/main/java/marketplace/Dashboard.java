@@ -1,5 +1,7 @@
 package marketplace;
 
+import java.io.IOException;
+
 public abstract class Dashboard {
     private static Dashboard currentDashboard;
     private User loggedIn;
@@ -20,7 +22,7 @@ public abstract class Dashboard {
         this.loggedIn = user;
     }
 
-    public void handleOption(int option){
+    public void handleOption(int option) throws IOException {
 
     }
 

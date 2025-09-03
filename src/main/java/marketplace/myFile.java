@@ -1,7 +1,11 @@
 package marketplace;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.nio.file.StandardCopyOption;
 
 public class myFile {
     //writing seller to the file
@@ -62,5 +66,28 @@ public class myFile {
 
         return map;
     }
+
+    public static void updateFile(String file, String oldValue, String newValue) throws IOException {
+        System.out.println(oldValue+ "old value");
+        System.out.println(newValue+ "new value");
+        Path filePath = Paths.get(file);
+        List<String> lines = Files.readAllLines(filePath);
+
+        for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            System.out.println(lines.get(i)+"i");
+            if (line.contains(oldValue)) {
+                lines.set(i, line.replace(oldValue, newValue));
+            }
+        }
+
+        // Fix: handle null parent
+        Path parent = filePath.getParent() != null ? filePath.getParent() : Paths.get("");
+        Path tempFilePath = Files.createTempFile(parent, "temp_", ".txt");
+
+        Files.write(tempFilePath, lines);
+        Files.move(tempFilePath, filePath, StandardCopyOption.REPLACE_EXISTING);
+    }
+
 
 }

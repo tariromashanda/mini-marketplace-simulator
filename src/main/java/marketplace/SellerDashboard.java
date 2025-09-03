@@ -1,5 +1,6 @@
 package marketplace;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class SellerDashboard extends Dashboard {
@@ -10,7 +11,7 @@ public class SellerDashboard extends Dashboard {
         this.loggedIn = seller;
     }
 
-    public void handleOption(int option){
+    public void handleOption(int option) throws IOException {
         switch(option){
             case 1:
                 addItems();
@@ -23,7 +24,7 @@ public class SellerDashboard extends Dashboard {
                 System.out.println("select an option (1-name, 2-price, 3-description)");
                 String editOption = scanner.nextLine().trim();
 
-                System.out.println("what item do you want to change?");
+                System.out.println("what is the new value of the item?");
                 String editItem = scanner.nextLine().trim();
 
                 loggedIn.getInventory().edit(itemName, editOption, editItem);
@@ -36,6 +37,8 @@ public class SellerDashboard extends Dashboard {
             case 4:
                 loggedIn.getInventory().view();
                 break;
+            case 5:
+                System.exit(0);
             default:
                 System.out.println("please select an option from 1 to 5");
         }
@@ -46,6 +49,7 @@ public class SellerDashboard extends Dashboard {
         System.out.println("2. edit item");
         System.out.println("3. delete item");
         System.out.println("4. view items");
+        System.out.println("5. exit");
     }
 
      public void addItems(){
@@ -61,6 +65,9 @@ public class SellerDashboard extends Dashboard {
 
             Item newItem = new Item(itemName, itemPrice, itemDescription);
             loggedIn.getInventory().add(newItem);
+
+            loggedIn.addToFile();
+
 
 }
 

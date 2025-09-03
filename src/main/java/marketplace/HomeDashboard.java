@@ -85,7 +85,7 @@ public class HomeDashboard extends Dashboard {
                 SellerDashboard sellerDashboard = new SellerDashboard(newSeller);
                 sellerDashboard.dashboard();
 
-                String message = String.format("You have successfully registered %s", username);
+                String message = String.format("you have successfully registered %s", username);
                 System.out.println(message);
 
                 List<String> sellerAttributes = new ArrayList<>();
@@ -101,7 +101,6 @@ public class HomeDashboard extends Dashboard {
 
                 myFile.createFile(sellerInventory);
 
-                myFile.writeToFile(newSeller.getUsername(), sellerItems,sellerInventory);
 
 
             }
@@ -123,7 +122,7 @@ public class HomeDashboard extends Dashboard {
 
 
 public void exit(){
-
+    System.exit(0);
 }
 
 }

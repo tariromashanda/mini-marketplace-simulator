@@ -20,7 +20,7 @@ public class Seller extends User{
 
     public void addToFile(){
 
-        String sellerInventory = "sellerInventory";
+        String sellerInventory = "sellerInventory.txt";
 
         List<List<String>> sellerInventoryList = new ArrayList<>();
         for(Item item: inventory.getInventory()){
