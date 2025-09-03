@@ -8,7 +8,7 @@ import java.util.*;
 import java.nio.file.StandardCopyOption;
 
 public class myFile {
-    //writing seller to the file
+
     public static void writeToFile(String key, List<String> value, String file){
 
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))){
@@ -47,41 +47,38 @@ public class myFile {
         }
     }
 
-    public static Map<String, List<String>> readInData(String filepath){
-        Map <String, List<String>> map = new HashMap<>();
-        try(BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
-            String line = null;
-            while((line.equals(reader.readLine()))){
-                String[] parts = line.split(" ",2);
-                    String username = parts[0].trim();
-                    String attributes = parts[1].trim();
-                    map.put(username, Collections.singletonList(attributes));
+    public static Map<String, Seller> readInSeller(String file) {
+        Map<String, Seller> sellerMap = new HashMap<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.replaceAll("[\\[\\],]", "");
+                String[] parts = line.split(" ");
+                System.out.println(Arrays.toString(parts));
+                Seller seller = new Seller(parts[0], parts[2], parts[0], parts[3], parts[4]);
+                sellerMap.put(seller.getUsername(), seller);
 
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("An I/O error occurred: " + e.getMessage());
         }
 
-        return map;
+        return sellerMap;
+
     }
 
     public static void updateFile(String file, String oldValue, String newValue) throws IOException {
-        System.out.println(oldValue+ "old value");
-        System.out.println(newValue+ "new value");
         Path filePath = Paths.get(file);
         List<String> lines = Files.readAllLines(filePath);
 
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
-            System.out.println(lines.get(i)+"i");
             if (line.contains(oldValue)) {
                 lines.set(i, line.replace(oldValue, newValue));
             }
         }
 
-        // Fix: handle null parent
         Path parent = filePath.getParent() != null ? filePath.getParent() : Paths.get("");
         Path tempFilePath = Files.createTempFile(parent, "temp_", ".txt");
 

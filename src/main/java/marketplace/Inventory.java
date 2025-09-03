@@ -55,11 +55,9 @@ public class Inventory {
         }
     }
 
-
     public List<Item> getInventory() {
         return inventory;
     }
-
 
     public void view(){
         for (Item item : inventory) {

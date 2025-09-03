@@ -35,4 +35,8 @@ public class Seller extends User{
         myFile.writeToInventory(getUsername(), sellerInventoryList, sellerInventory);
 
     }
+
+    public String toString(){
+         return getName()+ getSurname()+ getEmail()+ getUsername()+ getPassword();
+    }
 }

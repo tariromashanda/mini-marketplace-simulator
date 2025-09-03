@@ -1,8 +1,6 @@
 package marketplace;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.List;
+import java.util.*;
 
 public class HomeDashboard extends Dashboard {
 
@@ -11,19 +9,22 @@ public class HomeDashboard extends Dashboard {
     String buyerData = "buyerData.txt";
     String sellerInventory = "sellerInventory.txt";
 
-    List<Seller> sellersList = new ArrayList<>();
+    Map<String, Seller> sellerList = new HashMap<>();
     List<Buyer> buyerList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
     public void handleOption(int option){
         switch(option){
             case 1:
-                login();
+                sellerLogin();
                 break;
             case 2:
-                signup();
+                buyerLogin();
                 break;
             case 3:
+                signup();
+                break;
+            case 4:
                 exit();
                 break;
             default:
@@ -33,7 +34,8 @@ public class HomeDashboard extends Dashboard {
     }
 
     public void dashboard(){
-        System.out.println("1. login");
+        System.out.println("1. seller login");
+        System.out.println("1. buyer login");
         System.out.println("2. signup");
         System.out.println("3. exit");
     }
@@ -79,7 +81,6 @@ public class HomeDashboard extends Dashboard {
 
             }else{
                 Seller newSeller = new Seller(name, surname, username, email, password);
-                sellersList.add(newSeller);
                 loggedIn = newSeller;
 
                 SellerDashboard sellerDashboard = new SellerDashboard(newSeller);
@@ -89,7 +90,6 @@ public class HomeDashboard extends Dashboard {
                 System.out.println(message);
 
                 List<String> sellerAttributes = new ArrayList<>();
-                List<String> sellerItems = new ArrayList<>();
                 sellerAttributes.add(newSeller.getName());
                 sellerAttributes.add(newSeller.getSurname());
                 sellerAttributes.add(newSeller.getEmail());
@@ -101,8 +101,6 @@ public class HomeDashboard extends Dashboard {
 
                 myFile.createFile(sellerInventory);
 
-
-
             }
     }
 
@@ -110,8 +108,23 @@ public class HomeDashboard extends Dashboard {
         return this.loggedIn;
     }
 
+    public void sellerLogin(){
 
-    public void login(){
+        sellerList = myFile.readInSeller(sellerData);
+
+        System.out.println("enter username");
+        String sellerUsername = scanner.nextLine();
+        System.out.println("enter password");
+        String sellerPassword = scanner.nextLine();
+
+        if(sellerList.containsKey(sellerUsername) && (sellerList.get(sellerUsername).getPassword().equals(sellerPassword))){
+            loggedIn = (sellerList.get(sellerUsername));
+            System.out.println("you have succesfully logged in " + loggedIn.getUsername());
+        }
+
+    }
+
+    public void buyerLogin(){
 
     }
 
@@ -120,8 +133,7 @@ public class HomeDashboard extends Dashboard {
         return "Home Dashboard";
     }
 
-
-public void exit(){
+    public void exit(){
     System.exit(0);
 }
 
