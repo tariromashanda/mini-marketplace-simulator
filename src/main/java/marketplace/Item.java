@@ -36,4 +36,9 @@ public class Item {
         return this.description;
     }
 
+    @Override
+    public String toString(){
+        return "name: " + this.name + "price: " + this.price + "description: "+ this.description;
+    }
+
 }

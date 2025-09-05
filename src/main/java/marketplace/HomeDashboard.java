@@ -1,19 +1,23 @@
 package marketplace;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class HomeDashboard extends Dashboard {
 
     User loggedIn;
+    Seller sellerLogged;
+    Inventory inventory;
     String sellerData = "sellerData.txt";
     String buyerData = "buyerData.txt";
     String sellerInventory = "sellerInventory.txt";
 
-    Map<String, Seller> sellerList = new HashMap<>();
+    Map<String, Seller> sellerDataLogin = new HashMap<>();
+    Map<String, Inventory> sellerInventoryLogin = new HashMap<>();
     List<Buyer> buyerList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public void handleOption(int option){
+    public void handleOption(int option) throws FileNotFoundException {
         switch(option){
             case 1:
                 sellerLogin();
@@ -105,21 +109,32 @@ public class HomeDashboard extends Dashboard {
     }
 
     public User getLoggedInUser(){
+        if (loggedIn instanceof Seller) {
+            Seller seller = (Seller) loggedIn;
+
+        }
         return this.loggedIn;
     }
 
-    public void sellerLogin(){
+    public void sellerLogin() throws FileNotFoundException {
 
-        sellerList = myFile.readInSeller(sellerData);
+        sellerDataLogin  = myFile.readInSeller(sellerData);
+        sellerInventoryLogin = myFile.readInInventory(sellerInventory);
 
         System.out.println("enter username");
         String sellerUsername = scanner.nextLine();
         System.out.println("enter password");
         String sellerPassword = scanner.nextLine();
 
-        if(sellerList.containsKey(sellerUsername) && (sellerList.get(sellerUsername).getPassword().equals(sellerPassword))){
-            loggedIn = (sellerList.get(sellerUsername));
-            System.out.println("you have succesfully logged in " + loggedIn.getUsername());
+        if(sellerDataLogin.containsKey(sellerUsername) && (sellerDataLogin.get(sellerUsername).getPassword().equals(sellerPassword))){
+
+            sellerLogged = sellerDataLogin.get(sellerUsername);
+            inventory = sellerInventoryLogin.get(sellerUsername);
+
+            sellerLogged.setInventory(inventory);
+            loggedIn = sellerLogged;
+
+            System.out.println("you have succesfully logged in " + sellerLogged.getUsername());
         }
 
     }

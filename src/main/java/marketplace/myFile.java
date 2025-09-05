@@ -12,7 +12,7 @@ public class myFile {
     public static void writeToFile(String key, List<String> value, String file){
 
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))){
-            writer.write(key + " " + value);
+            writer.write(key + ","+ " " + value);
             writer.newLine();
             writer.flush();
         } catch (IOException e) {
@@ -23,7 +23,7 @@ public class myFile {
     public static void writeToInventory(String key, List<List <String>> value, String file){
 
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))){
-            writer.write(key + " " + value);
+            writer.write(key  + " " + value);
             writer.newLine();
             writer.flush();
         } catch (IOException e) {
@@ -55,7 +55,6 @@ public class myFile {
             while ((line = reader.readLine()) != null) {
                 line = line.replaceAll("[\\[\\],]", "");
                 String[] parts = line.split(" ");
-                System.out.println(Arrays.toString(parts));
                 Seller seller = new Seller(parts[0], parts[2], parts[0], parts[3], parts[4]);
                 sellerMap.put(seller.getUsername(), seller);
 
@@ -65,6 +64,33 @@ public class myFile {
         }
 
         return sellerMap;
+
+    }
+
+    public static Map<String, Inventory>  readInInventory(String file) throws FileNotFoundException {
+        Map<String, Inventory> sellerInventory = new HashMap<>();
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))){
+            String line;
+            while((line = reader.readLine()) != null){
+                line = line.replaceAll("[\\[\\]]", "");
+                String[] parts = line.split(",");
+                Inventory inventory = new Inventory();
+
+                for(int i = 0; i < parts.length/3; i++){
+                   Item item = new Item(parts[1], parts[2], parts[3]);
+                   inventory.add(item);
+                   System.out.println(inventory);
+                }
+
+                sellerInventory.put(parts[0], inventory);
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return sellerInventory;
 
     }
 
