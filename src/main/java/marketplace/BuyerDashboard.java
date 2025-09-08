@@ -70,23 +70,35 @@ public class BuyerDashboard extends Dashboard {
 
         for (Map.Entry<String, Inventory> entry : marketplace.entrySet()) {
             Inventory inv = entry.getValue();
-            if (inv.getInventory().contains(name)) {
-                System.out.println("Found " + entry.getKey());
-                found = true;
-                break;
+            for(int i = 0; i < inv.getInventory().size(); i++){
+                if(equalsIgnoreFormatting(inv.getInventory().get(i).getName(), name)){
+                    System.out.println("Found " + inv.getInventory().get(i).getName());
+                    found = true;
+                    break;
+                }
             }
+
         }
+
 
         if (!found){
             System.out.println("Item not found");
         }
 
+    }
 
+    private boolean equalsIgnoreFormatting(String a, String b) {
+        if (a == null || b == null) return false;
+
+        String cleanA = a.trim().replaceAll("\\s+", " ").toLowerCase();
+        String cleanB = b.trim().replaceAll("\\s+", " ").toLowerCase();
+
+        return cleanA.equals(cleanB);
     }
 
 
 
-    public void viewItems(Map<String, Inventory> marketplace) throws FileNotFoundException {
+    public void viewItems(Map<String, Inventory> marketplace) {
         marketplace.forEach((key, value) -> System.out.println("Key: " + key + ", Value: " + value));
 
     }
