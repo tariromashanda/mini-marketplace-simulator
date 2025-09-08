@@ -13,7 +13,6 @@ public class Main {
         Dashboard currentDashboard;
         Scanner scanner = new Scanner(System.in);
         HomeDashboard homeDashboard = new HomeDashboard();
-        BuyerDashboard buyerDashboard = new BuyerDashboard();
         List<Dashboard> dashboardOrder = new ArrayList<>();
 
         Dashboard.setDashboard(homeDashboard);
@@ -33,6 +32,7 @@ public class Main {
                 dashboardOrder.add(sellerDashboard);
 
             }else if(currentDashboard.getLoggedInUser() instanceof Buyer && currentDashboard instanceof HomeDashboard){
+                BuyerDashboard buyerDashboard = new BuyerDashboard((Buyer) currentDashboard.getLoggedInUser());
                 Dashboard.setDashboard(buyerDashboard);
                 dashboardOrder.add(buyerDashboard);
             }

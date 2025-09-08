@@ -39,9 +39,9 @@ public class HomeDashboard extends Dashboard {
 
     public void dashboard(){
         System.out.println("1. seller login");
-        System.out.println("1. buyer login");
-        System.out.println("2. signup");
-        System.out.println("3. exit");
+        System.out.println("2. buyer login");
+        System.out.println("3. signup");
+        System.out.println("4. exit");
     }
 
     public void signup(){
@@ -108,13 +108,6 @@ public class HomeDashboard extends Dashboard {
             }
     }
 
-    public User getLoggedInUser(){
-        if (loggedIn instanceof Seller) {
-            Seller seller = (Seller) loggedIn;
-
-        }
-        return this.loggedIn;
-    }
 
     public void sellerLogin() throws FileNotFoundException {
 
@@ -133,9 +126,9 @@ public class HomeDashboard extends Dashboard {
 
             sellerLogged.setInventory(inventory);
             loggedIn = sellerLogged;
-
             System.out.println("you have succesfully logged in " + sellerLogged.getUsername());
         }
+
 
     }
 

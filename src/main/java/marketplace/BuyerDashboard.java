@@ -1,6 +1,92 @@
 package marketplace;
 
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 public class BuyerDashboard extends Dashboard {
+    Buyer loggedIn;
+    Inventory inventory;
+    String sellerInventory = "sellerInventory.txt";
+    //Map<String, Inventory> marketplace = new HashMap<>();
+
+    Scanner scanner = new Scanner(System.in);
+
+    public BuyerDashboard(Buyer buyer) {
+        this.loggedIn = buyer;
+    }
+
+//    public Inventory getMarketPlace(){
+//        return marketplace;
+//    }
+
+    public void dashboard(){
+        System.out.println("1. view items");
+        System.out.println("2. search items");
+        System.out.println("3. purchase items");
+        System.out.println("4. view transactions");
+        System.out.println("5. exit");
+    }
+
+    public void handleOption(int option, Map<String, Inventory> marketplace) throws FileNotFoundException {
+        switch(option){
+            case 1:
+                viewItems(marketplace);
+                break;
+            case 2:
+                System.out.println("what item are you looking for?");
+                String name = scanner.nextLine();
+                searchItems(marketplace, name);
+                break;
+            case 3:
+                purchaseItems();
+                break;
+            case 4:
+                viewTransactions();
+                break;
+            case 5:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("please select an option from 1 to 5");
+        }
+    }
+
+
+    private void viewTransactions() {
+    }
+
+    private void purchaseItems() {
+    }
+
+    private void searchItems(Map<String, Inventory> marketplace, String name) {
+
+        boolean found = false;
+
+        for (Map.Entry<String, Inventory> entry : marketplace.entrySet()) {
+            Inventory inv = entry.getValue();
+            if (inv.getInventory().contains(name)) {
+                System.out.println("Found " + entry.getKey());
+                found = true;
+                break;
+            }
+        }
+
+        if (found == false){
+            System.out.println("Item not found");
+        }
+
+
+    }
+
+
+
+    public void viewItems(Map<String, Inventory> marketplace) throws FileNotFoundException {
+        marketplace.forEach((key, value) -> System.out.println("Key: " + key + ", Value: " + value));
+
+    }
 
 
 }
