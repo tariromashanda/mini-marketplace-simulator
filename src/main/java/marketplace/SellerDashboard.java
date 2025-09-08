@@ -9,6 +9,7 @@ public class SellerDashboard extends Dashboard {
 
     public SellerDashboard(Seller seller) {
         this.loggedIn = seller;
+        setLoggedInUser(seller);
     }
 
     public void handleOption(int option) throws IOException {

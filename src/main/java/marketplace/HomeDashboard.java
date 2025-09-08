@@ -5,7 +5,6 @@ import java.util.*;
 
 public class HomeDashboard extends Dashboard {
 
-    User loggedIn;
     Seller sellerLogged;
     Inventory inventory;
     String sellerData = "sellerData.txt";
@@ -67,7 +66,10 @@ public class HomeDashboard extends Dashboard {
             if (Integer.parseInt(role) == 1){
                 Buyer newBuyer = new Buyer(name, surname, username, email,password);
                 buyerList.add(newBuyer);
-                loggedIn = newBuyer;
+                setLoggedInUser(newBuyer);
+
+                BuyerDashboard buyerDashboard = new BuyerDashboard(newBuyer);
+                buyerDashboard.dashboard();
 
                 String message = String.format("you have successfully registered %s", username);
                 System.out.println(message);
@@ -82,10 +84,12 @@ public class HomeDashboard extends Dashboard {
 
                 myFile.writeToFile(newBuyer.getUsername(), buyerAttributes, buyerData);
 
+                buyerDashboard.setLoggedInUser(newBuyer);
 
-            }else{
+
+            }else if (Integer.parseInt(role) == 2){
                 Seller newSeller = new Seller(name, surname, username, email, password);
-                loggedIn = newSeller;
+                setLoggedInUser(newSeller);
 
                 SellerDashboard sellerDashboard = new SellerDashboard(newSeller);
                 sellerDashboard.dashboard();
@@ -104,6 +108,8 @@ public class HomeDashboard extends Dashboard {
                 myFile.writeToFile(newSeller.getUsername(), sellerAttributes, sellerData);
 
                 myFile.createFile(sellerInventory);
+
+                sellerDashboard.setLoggedInUser(newSeller);
 
             }
     }
@@ -125,8 +131,8 @@ public class HomeDashboard extends Dashboard {
             inventory = sellerInventoryLogin.get(sellerUsername);
 
             sellerLogged.setInventory(inventory);
-            loggedIn = sellerLogged;
-            System.out.println("you have succesfully logged in " + sellerLogged.getUsername());
+            setLoggedInUser(sellerLogged);
+            System.out.println("you have succesfully logged in " + getLoggedInUser().getUsername());
         }
 
 

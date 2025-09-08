@@ -37,6 +37,8 @@ public class Main {
                 dashboardOrder.add(buyerDashboard);
             }
 
+            System.out.println(currentDashboard.getLoggedInUser().getUsername());
+
             if(option == 5){
                 System.exit(0);
             }

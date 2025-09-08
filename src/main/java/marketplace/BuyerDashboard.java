@@ -8,19 +8,16 @@ import java.util.Scanner;
 
 public class BuyerDashboard extends Dashboard {
     Buyer loggedIn;
-    Inventory inventory;
     String sellerInventory = "sellerInventory.txt";
-    //Map<String, Inventory> marketplace = new HashMap<>();
+    Map<String, Inventory> marketplace = new HashMap<>();
 
     Scanner scanner = new Scanner(System.in);
 
     public BuyerDashboard(Buyer buyer) {
         this.loggedIn = buyer;
+        setLoggedInUser(buyer);
     }
 
-//    public Inventory getMarketPlace(){
-//        return marketplace;
-//    }
 
     public void dashboard(){
         System.out.println("1. view items");
@@ -30,7 +27,13 @@ public class BuyerDashboard extends Dashboard {
         System.out.println("5. exit");
     }
 
-    public void handleOption(int option, Map<String, Inventory> marketplace) throws FileNotFoundException {
+    public void setMarketplace() throws FileNotFoundException {
+        marketplace = myFile.readInInventory(sellerInventory);
+    }
+
+    public void handleOption(int option) throws FileNotFoundException {
+        setMarketplace();
+
         switch(option){
             case 1:
                 viewItems(marketplace);
@@ -74,7 +77,7 @@ public class BuyerDashboard extends Dashboard {
             }
         }
 
-        if (found == false){
+        if (!found){
             System.out.println("Item not found");
         }
 
