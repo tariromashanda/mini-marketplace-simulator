@@ -40,11 +40,15 @@ public class BuyerDashboard extends Dashboard {
                 break;
             case 2:
                 System.out.println("what item are you looking for?");
-                String name = scanner.nextLine();
-                searchItems(marketplace, name);
+                String findItem = scanner.nextLine();
+                searchItems(marketplace, findItem);
                 break;
             case 3:
-                purchaseItems();
+                System.out.println("what item are you looking for?");
+                String buyItem = scanner.nextLine();
+                System.out.println("who is it sold by??");
+                String seller = scanner.nextLine();
+                purchaseItems(marketplace, buyItem, seller);
                 break;
             case 4:
                 viewTransactions();
@@ -61,7 +65,26 @@ public class BuyerDashboard extends Dashboard {
     private void viewTransactions() {
     }
 
-    private void purchaseItems() {
+    private void purchaseItems(Map<String, Inventory> marketplace, String name, String seller) {
+        boolean bought = false;
+
+        Inventory sellerInvntory = marketplace.get(seller);
+
+        for(Item item: sellerInvntory.getInventory()){
+            if(equalsIgnoreFormatting(item.getName(), name)){
+                sellerInvntory.delete(name);
+                System.out.println("bought" + item.getName() +" sold by "+ seller);
+                bought = true;
+                break;
+            }
+
+        }
+
+        if (!bought){
+            System.out.println("could not buy item");
+        }
+
+
     }
 
     private void searchItems(Map<String, Inventory> marketplace, String name) {
@@ -70,9 +93,10 @@ public class BuyerDashboard extends Dashboard {
 
         for (Map.Entry<String, Inventory> entry : marketplace.entrySet()) {
             Inventory inv = entry.getValue();
+            String seller = entry.getKey();
             for(int i = 0; i < inv.getInventory().size(); i++){
                 if(equalsIgnoreFormatting(inv.getInventory().get(i).getName(), name)){
-                    System.out.println("Found " + inv.getInventory().get(i).getName());
+                    System.out.println("found" + inv.getInventory().get(i).getName() +" sold by "+ seller);
                     found = true;
                     break;
                 }
@@ -82,7 +106,7 @@ public class BuyerDashboard extends Dashboard {
 
 
         if (!found){
-            System.out.println("Item not found");
+            System.out.println("item not found");
         }
 
     }
@@ -99,7 +123,7 @@ public class BuyerDashboard extends Dashboard {
 
 
     public void viewItems(Map<String, Inventory> marketplace) {
-        marketplace.forEach((key, value) -> System.out.println("Key: " + key + ", Value: " + value));
+        marketplace.forEach((key, value) -> System.out.println("seller: " + key + ", item: " + value));
 
     }
 
