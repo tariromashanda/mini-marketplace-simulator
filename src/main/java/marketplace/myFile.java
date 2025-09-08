@@ -47,7 +47,7 @@ public class myFile {
         }
     }
 
-    public static Map<String, Seller> readInSeller(String file) {
+    public static Map<String, Seller> readInUser(String file) {
         Map<String, Seller> sellerMap = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {

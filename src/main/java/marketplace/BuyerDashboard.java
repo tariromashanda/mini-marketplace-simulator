@@ -51,7 +51,7 @@ public class BuyerDashboard extends Dashboard {
                 purchaseItems(marketplace, buyItem, seller);
                 break;
             case 4:
-                viewTransactions();
+                loggedIn.getTransaction().view();
                 break;
             case 5:
                 System.exit(0);
@@ -62,17 +62,17 @@ public class BuyerDashboard extends Dashboard {
     }
 
 
-    private void viewTransactions() {
-    }
-
     private void purchaseItems(Map<String, Inventory> marketplace, String name, String seller) {
         boolean bought = false;
 
-        Inventory sellerInvntory = marketplace.get(seller);
+        Inventory sellerInventory = marketplace.get(seller);
 
-        for(Item item: sellerInvntory.getInventory()){
+        for(Item item: sellerInventory.getInventory()){
             if(equalsIgnoreFormatting(item.getName(), name)){
-                sellerInvntory.delete(name);
+                Purchase purchase = new Purchase(loggedIn, seller, item );
+                loggedIn.getTransaction().add(purchase);
+                sellerInventory.delete(name);
+
                 System.out.println("bought" + item.getName() +" sold by "+ seller);
                 bought = true;
                 break;

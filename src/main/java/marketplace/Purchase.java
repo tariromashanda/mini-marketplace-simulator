@@ -1,18 +1,18 @@
 package marketplace;
 
 public class Purchase {
-    private String buyer;
+    private Buyer buyer;
     private String seller;
     private Item item;
 
-    public Purchase(String buyer, String seller, Item item){
+    public Purchase(Buyer buyer, String seller, Item item){
         this.buyer = buyer;
         this.seller = seller;
         this.item = item;
 
     }
 
-    public String getBuyer() {
+    public Buyer getBuyer() {
         return this.buyer;
     }
 

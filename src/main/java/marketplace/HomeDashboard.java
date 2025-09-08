@@ -117,7 +117,7 @@ public class HomeDashboard extends Dashboard {
 
     public void sellerLogin() throws FileNotFoundException {
 
-        sellerDataLogin  = myFile.readInSeller(sellerData);
+        sellerDataLogin  = myFile.readInUser(sellerData);
         sellerInventoryLogin = myFile.readInInventory(sellerInventory);
 
         System.out.println("enter username");
@@ -135,7 +135,7 @@ public class HomeDashboard extends Dashboard {
             System.out.println("you have succesfully logged in " + getLoggedInUser().getUsername());
         }
 
-
+t
     }
 
     public void buyerLogin(){
