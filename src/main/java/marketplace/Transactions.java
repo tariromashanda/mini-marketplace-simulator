@@ -23,5 +23,13 @@ public class Transactions {
         }
     }
 
+    @Override
+    public String toString(){
+        for(Purchase purchase: transactions){
+            return "buyer: " + purchase.getBuyer() + " seller: " + purchase.getSeller() + " item: "+ purchase.getItem();
+        }
+        return "Inventory returned";
+    }
+
 
 }
