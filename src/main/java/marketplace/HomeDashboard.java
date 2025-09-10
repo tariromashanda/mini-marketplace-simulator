@@ -6,14 +6,15 @@ import java.util.*;
 public class HomeDashboard extends Dashboard {
 
     Seller sellerLogged;
+    Buyer buyerLogged;
     Inventory inventory;
     String sellerData = "sellerData.txt";
     String buyerData = "buyerData.txt";
     String sellerInventory = "sellerInventory.txt";
 
     Map<String, Seller> sellerDataLogin = new HashMap<>();
+    Map<String, Buyer> buyerDataLogin = new HashMap<>();
     Map<String, Inventory> sellerInventoryLogin = new HashMap<>();
-    List<Buyer> buyerList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
     public void handleOption(int option) throws FileNotFoundException {
@@ -65,7 +66,6 @@ public class HomeDashboard extends Dashboard {
 
             if (Integer.parseInt(role) == 1){
                 Buyer newBuyer = new Buyer(name, surname, username, email,password);
-                buyerList.add(newBuyer);
                 setLoggedInUser(newBuyer);
 
                 BuyerDashboard buyerDashboard = new BuyerDashboard(newBuyer);
@@ -117,8 +117,9 @@ public class HomeDashboard extends Dashboard {
 
     public void sellerLogin() throws FileNotFoundException {
 
-        sellerDataLogin  = myFile.readInUser(sellerData);
+        sellerDataLogin  = myFile.readInSeller(sellerData);
         sellerInventoryLogin = myFile.readInInventory(sellerInventory);
+        System.out.println(sellerInventoryLogin);
 
         System.out.println("enter username");
         String sellerUsername = scanner.nextLine();
@@ -132,13 +133,28 @@ public class HomeDashboard extends Dashboard {
 
             sellerLogged.setInventory(inventory);
             setLoggedInUser(sellerLogged);
-            System.out.println("you have succesfully logged in " + getLoggedInUser().getUsername());
+            System.out.println("you have successfully logged in " + getLoggedInUser().getUsername());
         }
 
-t
+
     }
 
-    public void buyerLogin(){
+    public void buyerLogin() throws FileNotFoundException {
+        buyerDataLogin  = myFile.readInBuyer(buyerData);
+        sellerInventoryLogin = myFile.readInInventory(sellerInventory);
+
+        System.out.println("enter username");
+        String buyerUsername = scanner.nextLine();
+        System.out.println("enter password");
+        String buyerPassword = scanner.nextLine();
+
+        if(buyerDataLogin.containsKey(buyerUsername) && (buyerDataLogin.get(buyerUsername).getPassword().equals(buyerPassword))){
+
+            buyerLogged = buyerDataLogin.get(buyerUsername);
+
+            setLoggedInUser(buyerLogged);
+            System.out.println("you have successfully logged in " + getLoggedInUser().getUsername());
+        }
 
     }
 

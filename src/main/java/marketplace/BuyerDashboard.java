@@ -2,7 +2,6 @@ package marketplace;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -72,7 +71,6 @@ public class BuyerDashboard extends Dashboard {
                 Purchase purchase = new Purchase(loggedIn, seller, item );
                 loggedIn.getTransaction().add(purchase);
                 sellerInventory.delete(name);
-
                 System.out.println("bought" + item.getName() +" sold by "+ seller);
                 bought = true;
                 break;
@@ -123,8 +121,15 @@ public class BuyerDashboard extends Dashboard {
 
 
     public void viewItems(Map<String, Inventory> marketplace) {
-        marketplace.forEach((key, value) -> System.out.println("seller: " + key + ", item: " + value));
+        for (Map.Entry<String, Inventory> entry : marketplace.entrySet()) {
+            System.out.println(marketplace);
+//            String key = entry.getKey();
+//            Inventory inventory = entry.getValue();
+//            System.out.println("seller: " + key);
+//
+//            inventory.view();
 
+        }
     }
 
 

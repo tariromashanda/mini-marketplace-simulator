@@ -32,7 +32,7 @@ public class Seller extends User{
 
         }
 
-        myFile.writeToInventory(getUsername(), sellerInventoryList, sellerInventory);
+         myFile.overwriteInventory(getUsername(), sellerInventoryList, sellerInventory);
 
     }
 
