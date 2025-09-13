@@ -71,7 +71,7 @@ public class Inventory {
     @Override
     public String toString(){
         for(Item item: inventory){
-            return "name:" + item.getName() + " price:" + item.getPrice() + " description:"+ item.getDescription();
+            System.out.println( "name:" + item.getName() + " price:" + item.getPrice() + " description:"+ item.getDescription());
         }
         return "Inventory returned";
     }

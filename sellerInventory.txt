@@ -1,1 +1,1 @@
-therealbugs [[carrot keychain, 7, orange carrot keychain accessory], [carrot pillow, 30, large orange carrot shaped pillow], [carrot shaped necklace, 15, gold painted carrot shaped necklace]]
+therealbugs, [[carrot keychain, 7, orange carrot keychain accessory], [carrot pillow, 30, large orange carrot shaped pillow], [carrot shaped necklace, 15, gold painted carrot shaped necklace]]

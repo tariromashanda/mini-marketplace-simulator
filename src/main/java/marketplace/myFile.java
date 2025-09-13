@@ -124,10 +124,17 @@ public class myFile {
                 line = line.replaceAll("[\\[\\]]", "");
                 String[] parts = line.split(",");
                 Inventory inventory = new Inventory();
-
-                for(int i = 0; i < parts.length/3; i++){
-                   Item item = new Item(parts[1], parts[2], parts[3]);
+                int name = 1;
+                int price = 2;
+                int description = 3;
+                for(int i = 0; i < (parts.length-1)/3; i++){
+                   Item item = new Item(parts[name], parts[price], parts[description]);
                    inventory.add(item);
+                   name +=3;
+                   price+=3;
+                   description+=3;
+                   
+                   
                 }
 
                 sellerInventory.put(parts[0], inventory);
