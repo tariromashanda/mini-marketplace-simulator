@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static marketplace.IgnoreFormatting.equalsIgnoreFormatting;
+
 public class Inventory {
     List<Item> inventory = new ArrayList<>();
 
@@ -48,7 +50,7 @@ public class Inventory {
     public void delete(String itemName) {
         for (int i = 0; i < inventory.size(); i++) {
             Item current = inventory.get(i);
-            if (current.getName().equals(itemName)) {
+            if (equalsIgnoreFormatting(current.getName(), itemName)) {
                 inventory.remove(i);
                 break;
             }

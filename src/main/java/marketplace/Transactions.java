@@ -10,9 +10,6 @@ public class Transactions {
         transactions.add(purchase);
     }
 
-    public List<Purchase> getTransactions() {
-        return transactions;
-    }
 
     public void view(){
         for (Purchase purchase : transactions) {

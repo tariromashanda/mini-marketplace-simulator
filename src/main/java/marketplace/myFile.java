@@ -115,7 +115,7 @@ public class myFile {
     }
 
     //reads in inventory of a single seller
-    public static Map<String, Inventory>  readInInventory(String file) throws FileNotFoundException {
+    public static Map<String, Inventory>  readInInventory(String file) {
         Map<String, Inventory> sellerInventory = new HashMap<>();
 
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
@@ -167,4 +167,10 @@ public class myFile {
     }
 
 
-}
+    }
+
+
+
+
+
+

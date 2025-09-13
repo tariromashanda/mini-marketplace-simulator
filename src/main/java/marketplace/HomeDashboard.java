@@ -44,7 +44,7 @@ public class HomeDashboard extends Dashboard {
         System.out.println("4. exit");
     }
 
-    public void signup(){
+    public void signup() throws FileNotFoundException {
 
             System.out.println("enter name");
             String name = scanner.nextLine();

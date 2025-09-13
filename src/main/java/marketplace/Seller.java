@@ -11,7 +11,7 @@ public class Seller extends User{
     }
 
     public Inventory getInventory() {
-        return inventory;
+        return this.inventory;
     }
 
     public void setInventory(Inventory inventory) {

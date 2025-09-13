@@ -1,9 +1,10 @@
 package marketplace;
 
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.*;
+
+import static marketplace.IgnoreFormatting.equalsIgnoreFormatting;
 
 public class BuyerDashboard extends Dashboard {
     Buyer loggedIn;
@@ -12,9 +13,10 @@ public class BuyerDashboard extends Dashboard {
 
     Scanner scanner = new Scanner(System.in);
 
-    public BuyerDashboard(Buyer buyer) {
+    public BuyerDashboard(Buyer buyer) throws FileNotFoundException {
         this.loggedIn = buyer;
         setLoggedInUser(buyer);
+        setMarketplace();
     }
 
 
@@ -27,11 +29,11 @@ public class BuyerDashboard extends Dashboard {
     }
 
     public void setMarketplace() throws FileNotFoundException {
+
         marketplace = myFile.readInInventory(sellerInventory);
     }
 
-    public void handleOption(int option) throws FileNotFoundException {
-        setMarketplace();
+    public void handleOption(int option) throws IOException {
 
         switch(option){
             case 1:
@@ -64,15 +66,19 @@ public class BuyerDashboard extends Dashboard {
     private void purchaseItems(Map<String, Inventory> marketplace, String name, String seller) {
         boolean bought = false;
 
-        Inventory sellerInventory = marketplace.get(seller);
+        Inventory inventory = marketplace.get(seller);
 
-        for(Item item: sellerInventory.getInventory()){
+        for(Item item: inventory.getInventory()){
             if(equalsIgnoreFormatting(item.getName(), name)){
                 Purchase purchase = new Purchase(loggedIn, seller, item );
                 loggedIn.getTransaction().add(purchase);
-                sellerInventory.delete(name);
+                inventory.delete(name);
+                System.out.println(inventory);
                 System.out.println("bought" + item.getName() +" sold by "+ seller);
                 bought = true;
+
+                myFile.createFile("transactions.txt");
+
                 break;
             }
 
@@ -81,8 +87,6 @@ public class BuyerDashboard extends Dashboard {
         if (!bought){
             System.out.println("could not buy item");
         }
-
-
     }
 
     private void searchItems(Map<String, Inventory> marketplace, String name) {
@@ -109,25 +113,12 @@ public class BuyerDashboard extends Dashboard {
 
     }
 
-    private boolean equalsIgnoreFormatting(String a, String b) {
-        if (a == null || b == null) return false;
-
-        String cleanA = a.trim().replaceAll("\\s+", " ").toLowerCase();
-        String cleanB = b.trim().replaceAll("\\s+", " ").toLowerCase();
-
-        return cleanA.equals(cleanB);
-    }
 
 
 
     public void viewItems(Map<String, Inventory> marketplace) {
         for (Map.Entry<String, Inventory> entry : marketplace.entrySet()) {
             System.out.println(marketplace);
-//            String key = entry.getKey();
-//            Inventory inventory = entry.getValue();
-//            System.out.println("seller: " + key);
-//
-//            inventory.view();
 
         }
     }

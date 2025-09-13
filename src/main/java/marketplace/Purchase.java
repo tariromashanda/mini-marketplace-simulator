@@ -12,6 +12,7 @@ public class Purchase {
 
     }
 
+
     public Buyer getBuyer() {
         return this.buyer;
     }

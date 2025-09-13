@@ -7,7 +7,10 @@ public class Buyer extends User{
         super(name, surname, email, username, password);
     }
 
-    public Transactions getTransaction() {
-        return transactions;
+
+    public Transactions getTransaction(){
+        return this.transactions;
     }
+
+
 }
